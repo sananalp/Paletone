@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Circle
@@ -11,9 +9,9 @@ namespace Circle
         private float _angle;
         private Color _color;
 
-        public float Distance { get { return _distance; } set { _distance = value; } }
-        public int Speed { get { return _speed; } set { _speed = value; } }
-        public float Angle { get { return _angle; } set { _angle = value; } }
-        public Color Color { get { return _color; } set { _color = value; } }
+        public float distance { get { return _distance; } set { _distance = value; } }
+        public int speed { get { return _speed; } set { _speed = value; } }
+        public float angle { get { return _angle; } set { _angle = value; } }
+        public Color color { get { return _color; } set { _color = value; } }
     }
 }

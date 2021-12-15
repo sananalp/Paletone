@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Circle;
@@ -20,12 +19,12 @@ namespace Game
         private void OnEnable()
         {
             _state.OnPlayStatesCalled[0] += CreateCircle;
-            _state.OnWinStateCalled += DestroyAllCircles;
+            _state.OnWinStatesCalled[2] += DestroyAllCircles;
         }
         private void OnDisable()
         {
             _state.OnPlayStatesCalled[0] -= CreateCircle;
-            _state.OnWinStateCalled -= DestroyAllCircles;
+            _state.OnWinStatesCalled[2] -= DestroyAllCircles;
         }
         private void CreateCircle()
         {
@@ -39,13 +38,13 @@ namespace Game
                 behaviour.targetObject = _targetObject;
                 behaviour.circle = new CircleModel();
                 var step = i % 2;
-                behaviour.circle.Speed = step == 0 ? speedRange : -speedRange;
-                behaviour.circle.Angle = angleRange;
-                behaviour.circle.Distance = 3;
+                behaviour.circle.speed = step == 0 ? speedRange : -speedRange;
+                behaviour.circle.angle = angleRange;
+                behaviour.circle.distance = 3;
                 spriteRenderer.sortingOrder = step == 0 ? 0 : 1;
                 var colorAlpha = step == 0 ? 1.0f : 0.5f;
-                behaviour.circle.Color = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f), colorAlpha);
-                spriteRenderer.color = behaviour.circle.Color;
+                behaviour.circle.color = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f), colorAlpha);
+                spriteRenderer.color = behaviour.circle.color;
                 _circleList.Add(behaviour);
             }
         }

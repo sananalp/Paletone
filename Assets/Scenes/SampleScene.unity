@@ -693,7 +693,7 @@ MonoBehaviour:
   _spawnParent: {fileID: 1238962899}
   _targetObject: {fileID: 894726383}
   _spawnCount: 4
-  _circleList: []
+  _removeCircleList: []
   _state: {fileID: 12758256}
 --- !u!1 &1364887398
 GameObject:
@@ -859,7 +859,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _state: {fileID: 12758256}
-  _matcher: {fileID: 1407885584}
 --- !u!114 &1407885584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +885,7 @@ GameObject:
   - component: {fileID: 1802547159}
   - component: {fileID: 1802547158}
   - component: {fileID: 1802547157}
+  - component: {fileID: 1802547161}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -976,6 +976,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1802547161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802547156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ff517e34e763c40b6b75bef97ede3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: {fileID: 12758256}
+  _playerController: {fileID: 1407885583}
+  _scoreText: {fileID: 1213185641}
+  _healthSprites:
+  - {fileID: 189542041}
+  - {fileID: 603542260}
+  - {fileID: 544731774}
 --- !u!1 &2012787934
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Game;
 
@@ -25,16 +24,12 @@ namespace Circle
         }
         private void RotateAround()
         {
-            _circle.Angle += Mathf.Deg2Rad * _circle.Speed * Time.deltaTime;
-            _x = Mathf.Cos(_circle.Angle) * _circle.Distance;
-            _y = Mathf.Sin(_circle.Angle) * _circle.Distance;
+            _circle.angle += Mathf.Deg2Rad * _circle.speed * Time.deltaTime;
+            _x = Mathf.Cos(_circle.angle) * _circle.distance;
+            _y = Mathf.Sin(_circle.angle) * _circle.distance;
             _point.x = _x;
             _point.y = _y;
             transform.position = new Vector3(_point.x, _point.y, _targetObject.position.z);
-        }
-        public void StopRotate()
-        {
-            StopCoroutine(RotateCoroutine());
         }
         IEnumerator RotateCoroutine()
         {

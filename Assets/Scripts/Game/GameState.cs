@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -8,7 +6,7 @@ namespace Game
     {
         public delegate void StateHandler();
         public StateHandler[] OnPlayStatesCalled = new StateHandler[3];
-        public event StateHandler OnWinStateCalled;
+        public StateHandler[] OnWinStatesCalled = new StateHandler[3];
         public StateHandler[] OnClickStatesCalled = new StateHandler[3];
 
         private void Start()
@@ -24,7 +22,10 @@ namespace Game
         }
         public void WinState()
         {
-            OnWinStateCalled?.Invoke();
+            foreach (StateHandler state in OnWinStatesCalled)
+            {
+                state?.Invoke();
+            }
         }
         public void ClickState()
         {
