@@ -9,18 +9,27 @@ namespace Player
         private PlayerModel _player;
         public PlayerModel player { get { return _player; } }
 
-        private void OnEnable()
+        private void Awake()
         {
             _player = new PlayerModel();
-            _state.OnWinStatesCalled[0] += ScoreChange;
+        }
+        private void OnEnable()
+        {
+            _state.OnWinStateCalled[0] += ScoreChange;
+            _state.OnMissClickStateCalled[0] += HealthChange;
         }
         private void OnDisable()
         {
-            _state.OnWinStatesCalled[0] -= ScoreChange;
+            _state.OnWinStateCalled[0] -= ScoreChange;
+            _state.OnMissClickStateCalled[0] -= HealthChange;
         }
         private void ScoreChange()
         {
-            ++_player.score;
+            _player.score++;
+        }
+        private void HealthChange()
+        {
+            _player.health--;
         }
         private void Update()
         {
@@ -32,7 +41,7 @@ namespace Player
     }
     public class PlayerModel
     {
-        private int _health;
+        private int _health = 3;
         private int _score;
 
         public int health { get { return _health; } set { _health = value; } }

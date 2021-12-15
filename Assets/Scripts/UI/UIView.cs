@@ -13,16 +13,31 @@ namespace Player
 
         private void OnEnable()
         {
-            _state.OnWinStatesCalled[1] += ScoreView;
+            _state.OnWinStateCalled[1] += ScoreView;
+            _state.OnMissClickStateCalled[1] += HealthView;
+            _state.OnLoseStateCalled += LoseView;
         }
         private void OnDisable()
         {
-            _state.OnWinStatesCalled[1] -= ScoreView;
+            _state.OnWinStateCalled[1] -= ScoreView;
+            _state.OnMissClickStateCalled[1] -= HealthView;
+            _state.OnLoseStateCalled -= LoseView;
         }
         private void ScoreView()
         {
             var text = _playerController.player.score.ToString();
             _scoreText.text = text;
+        }
+        private void HealthView()
+        {
+            var health = _playerController.player.health;
+
+            if(health >= 0) _healthSprites[health].color = Color.black;
+            else { _state.LoseState(); }
+        }
+        private void LoseView()
+        {
+
         }
     }
 }

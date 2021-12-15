@@ -13,15 +13,15 @@ namespace Game
 
         private void OnEnable()
         {
-            _state.OnPlayStatesCalled[1] += TryGetCircles;
-            _state.OnClickStatesCalled[0] += TryMatchCircles;
-            _state.OnClickStatesCalled[1] += TryGetCircles;
+            _state.OnPlayStateCalled[1] += TryGetCircles;
+            _state.OnClickStateCalled[0] += TryMatchCircles;
+            _state.OnClickStateCalled[1] += TryGetCircles;
         }
         private void OnDisable()
         {
-            _state.OnPlayStatesCalled[1] -= TryGetCircles;
-            _state.OnClickStatesCalled[0] -= TryMatchCircles;
-            _state.OnClickStatesCalled[1] -= TryGetCircles;
+            _state.OnPlayStateCalled[1] -= TryGetCircles;
+            _state.OnClickStateCalled[0] -= TryMatchCircles;
+            _state.OnClickStateCalled[1] -= TryGetCircles;
         }
         private float GetDistance()
         {
@@ -39,7 +39,7 @@ namespace Game
         {
             var distance = GetDistance();
 
-            if (distance < 0.5f)
+            if (distance < 0.3f)
             {
                 _circleSpawner.circleList.Remove(_circleA);
                 _circleSpawner.circleList.Remove(_circleB);
@@ -47,7 +47,10 @@ namespace Game
                 _circleSpawner.removeCircleList.Add(_circleB);
                 _circleA.StopAllCoroutines();
                 _circleB.StopAllCoroutines();
-                _circleA.transform.position = _circleB.transform.position;
+            }
+            else
+            {
+                _state.MissClickState();
             }
         }
         private void TryGetCircles()

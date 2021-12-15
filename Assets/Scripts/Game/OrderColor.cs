@@ -9,13 +9,13 @@ namespace Game
 
         private void OnEnable()
         {
-            _state.OnPlayStatesCalled[2] += SetOrderColor;
-            _state.OnClickStatesCalled[2] += SetOrderColor;
+            _state.OnPlayStateCalled[2] += SetOrderColor;
+            _state.OnClickStateCalled[2] += SetOrderColor;
         }
         private void OnDisable()
         {
-            _state.OnPlayStatesCalled[2] -= SetOrderColor;
-            _state.OnClickStatesCalled[2] -= SetOrderColor;
+            _state.OnPlayStateCalled[2] -= SetOrderColor;
+            _state.OnClickStateCalled[2] -= SetOrderColor;
         }
         public void SetOrderColor()
         {

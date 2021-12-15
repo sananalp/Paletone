@@ -18,13 +18,13 @@ namespace Game
 
         private void OnEnable()
         {
-            _state.OnPlayStatesCalled[0] += CreateCircle;
-            _state.OnWinStatesCalled[2] += DestroyAllCircles;
+            _state.OnPlayStateCalled[0] += CreateCircle;
+            _state.OnWinStateCalled[1] += DestroyAllCircles;
         }
         private void OnDisable()
         {
-            _state.OnPlayStatesCalled[0] -= CreateCircle;
-            _state.OnWinStatesCalled[2] -= DestroyAllCircles;
+            _state.OnPlayStateCalled[0] -= CreateCircle;
+            _state.OnWinStateCalled[1] -= DestroyAllCircles;
         }
         private void CreateCircle()
         {
