@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using Game;
 
@@ -30,6 +31,10 @@ namespace Player
         private void HealthChange()
         {
             _player.health--;
+        }
+        public void ClickRestart()
+        {
+            SceneManager.LoadScene(0);
         }
         private void Update()
         {

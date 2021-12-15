@@ -10,7 +10,7 @@ namespace Game
         [SerializeField] private Transform _spawnParent;
         [SerializeField] private Transform _targetObject;
         [SerializeField] private int _spawnCount;
-        private List<CircleBehaviour> _circleList = new List<CircleBehaviour>();
+        [SerializeField] private List<CircleBehaviour> _circleList = new List<CircleBehaviour>();
         [SerializeField] private List<CircleBehaviour> _removeCircleList = new List<CircleBehaviour>();
         [SerializeField] private GameState _state;
         public List<CircleBehaviour> circleList { get { return _circleList; } }
@@ -66,6 +66,7 @@ namespace Game
             {
                 Destroy(circle.gameObject);
             }
+            _circleList.Clear();
         }
     }
 }

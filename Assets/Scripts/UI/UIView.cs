@@ -10,18 +10,22 @@ namespace Player
         [SerializeField] private PlayerController _playerController;
         [SerializeField] private Text _scoreText;
         [SerializeField] private Image[] _healthSprites = new Image[3];
+        [SerializeField] private GameObject _restartButton;
+        [SerializeField] private Text _messageText;
 
         private void OnEnable()
         {
             _state.OnWinStateCalled[1] += ScoreView;
             _state.OnMissClickStateCalled[1] += HealthView;
             _state.OnLoseStateCalled += LoseView;
+            _state.OnPlayStateCalled[1] += PlayView;
         }
         private void OnDisable()
         {
             _state.OnWinStateCalled[1] -= ScoreView;
             _state.OnMissClickStateCalled[1] -= HealthView;
             _state.OnLoseStateCalled -= LoseView;
+            _state.OnPlayStateCalled[1] -= PlayView;
         }
         private void ScoreView()
         {
@@ -37,7 +41,13 @@ namespace Player
         }
         private void LoseView()
         {
-
+            _messageText.text = "Game Over";
+            _restartButton.SetActive(true);
+        }
+        private void PlayView()
+        {
+            _messageText.text = "Try to match colors to get a order color";
+            _restartButton.SetActive(false);
         }
     }
 }

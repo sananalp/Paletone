@@ -4,8 +4,8 @@ namespace Game
 {
     public class GameState : MonoBehaviour
     {
-        public enum State { Play, Win, Lose }
-        private State _gameState;
+        public enum State { Play, Lose }
+        [SerializeField] private State _gameState;
         public delegate void StateHandler();
         public StateHandler[] OnPlayStateCalled = new StateHandler[3];
         public StateHandler[] OnWinStateCalled = new StateHandler[3];
@@ -32,7 +32,6 @@ namespace Game
             {
                 state?.Invoke();
             }
-            _gameState = State.Win;
         }
         public void ClickState()
         {

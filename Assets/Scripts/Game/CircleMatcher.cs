@@ -25,9 +25,11 @@ namespace Game
         }
         private float GetDistance()
         {
-            var distance = Mathf.Abs(_circleA.transform.position.y - _circleB.transform.position.y);
+            var distanceX = Mathf.Abs(_circleA.transform.position.x - _circleB.transform.position.x);
+            var distanceY = Mathf.Abs(_circleA.transform.position.y - _circleB.transform.position.y);
+            var sum = distanceX * distanceY;
             
-            return distance;
+            return sum;
         }
         private int GetCircleCount()
         {
@@ -39,7 +41,7 @@ namespace Game
         {
             var distance = GetDistance();
 
-            if (distance < 0.3f)
+            if (distance < 0.25f)
             {
                 _circleSpawner.circleList.Remove(_circleA);
                 _circleSpawner.circleList.Remove(_circleB);
@@ -47,6 +49,7 @@ namespace Game
                 _circleSpawner.removeCircleList.Add(_circleB);
                 _circleA.StopAllCoroutines();
                 _circleB.StopAllCoroutines();
+                _circleA.transform.position = _circleB.transform.position;
             }
             else
             {
@@ -62,7 +65,7 @@ namespace Game
                 _circleA = _circleSpawner.circleList[0];
                 _circleB = _circleSpawner.circleList[1];
             }
-            else
+            else if(_state.gameState != GameState.State.Lose)
             {
                 _state.PlayState();
                 _state.WinState();
