@@ -33,7 +33,7 @@ namespace Player
         }
         private void Update()
         {
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && _state.gameState == GameState.State.Play)
             {
                 _state.ClickState();
             }

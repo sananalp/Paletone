@@ -33,7 +33,7 @@ namespace Player
             var health = _playerController.player.health;
 
             if(health >= 0) _healthSprites[health].color = Color.black;
-            else { _state.LoseState(); }
+            if(health == 0) { _state.LoseState(); }
         }
         private void LoseView()
         {

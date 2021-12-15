@@ -4,12 +4,15 @@ namespace Game
 {
     public class GameState : MonoBehaviour
     {
+        public enum State { Play, Win, Lose }
+        private State _gameState;
         public delegate void StateHandler();
         public StateHandler[] OnPlayStateCalled = new StateHandler[3];
         public StateHandler[] OnWinStateCalled = new StateHandler[3];
         public StateHandler[] OnClickStateCalled = new StateHandler[3];
         public StateHandler[] OnMissClickStateCalled = new StateHandler[3];
         public event StateHandler OnLoseStateCalled;
+        public State gameState { get { return _gameState; } }
 
         private void Start()
         {
@@ -21,6 +24,7 @@ namespace Game
             {
                 state?.Invoke();
             }
+            _gameState = State.Play;
         }
         public void WinState()
         {
@@ -28,6 +32,7 @@ namespace Game
             {
                 state?.Invoke();
             }
+            _gameState = State.Win;
         }
         public void ClickState()
         {
@@ -46,6 +51,7 @@ namespace Game
         public void LoseState()
         {
             OnLoseStateCalled?.Invoke();
+            _gameState = State.Lose;
         }
     }
 }

@@ -19,12 +19,16 @@ namespace Game
         private void OnEnable()
         {
             _state.OnPlayStateCalled[0] += CreateCircle;
-            _state.OnWinStateCalled[1] += DestroyAllCircles;
+            _state.OnWinStateCalled[1] += DestroyRemovedCircles;
+            _state.OnLoseStateCalled += DestroyRemovedCircles;
+            _state.OnLoseStateCalled += DestroyAllCircles;
         }
         private void OnDisable()
         {
             _state.OnPlayStateCalled[0] -= CreateCircle;
-            _state.OnWinStateCalled[1] -= DestroyAllCircles;
+            _state.OnWinStateCalled[1] -= DestroyRemovedCircles;
+            _state.OnLoseStateCalled -= DestroyRemovedCircles;
+            _state.OnLoseStateCalled -= DestroyAllCircles;
         }
         private void CreateCircle()
         {
@@ -48,13 +52,20 @@ namespace Game
                 _circleList.Add(behaviour);
             }
         }
-        private void DestroyAllCircles()
+        private void DestroyRemovedCircles()
         {
             foreach (CircleBehaviour circle in _removeCircleList)
             {
                 Destroy(circle.gameObject);
             }
             _removeCircleList.Clear();
+        }
+        private void DestroyAllCircles()
+        {
+            foreach (CircleBehaviour circle in _circleList)
+            {
+                Destroy(circle.gameObject);
+            }
         }
     }
 }
